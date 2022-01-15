@@ -51,15 +51,23 @@
             this.txtBox_MSSQL_Server = new System.Windows.Forms.TextBox();
             this.pnl_Bottom = new System.Windows.Forms.Panel();
             this.pnl_RPro8 = new System.Windows.Forms.Panel();
+            this.lbl_Rpro8_PatchDB = new System.Windows.Forms.Label();
+            this.btn_Rpro8_SelectFolder = new System.Windows.Forms.Button();
             this.lbl_Rpro8_Patch = new System.Windows.Forms.Label();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.btn_Rpro8_SelectFolder = new System.Windows.Forms.Button();
-            this.lbl_Rpro8_PatchDB = new System.Windows.Forms.Label();
+            this.pnl_ODBC = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtBox_ODBC_Password = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtBox_ODBC_User = new System.Windows.Forms.TextBox();
+            this.txtBox_ODBC = new System.Windows.Forms.TextBox();
             this.pnl_Ora.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_MSSQL.SuspendLayout();
             this.pnl_Bottom.SuspendLayout();
             this.pnl_RPro8.SuspendLayout();
+            this.pnl_ODBC.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_TNS
@@ -101,7 +109,7 @@
             this.txtBox_TNS.Location = new System.Drawing.Point(168, 11);
             this.txtBox_TNS.Name = "txtBox_TNS";
             this.txtBox_TNS.Size = new System.Drawing.Size(182, 26);
-            this.txtBox_TNS.TabIndex = 3;
+            this.txtBox_TNS.TabIndex = 10;
             // 
             // txtBox_User
             // 
@@ -109,7 +117,7 @@
             this.txtBox_User.Location = new System.Drawing.Point(168, 43);
             this.txtBox_User.Name = "txtBox_User";
             this.txtBox_User.Size = new System.Drawing.Size(182, 26);
-            this.txtBox_User.TabIndex = 4;
+            this.txtBox_User.TabIndex = 11;
             // 
             // txtBox_Password
             // 
@@ -117,7 +125,7 @@
             this.txtBox_Password.Location = new System.Drawing.Point(168, 75);
             this.txtBox_Password.Name = "txtBox_Password";
             this.txtBox_Password.Size = new System.Drawing.Size(182, 26);
-            this.txtBox_Password.TabIndex = 5;
+            this.txtBox_Password.TabIndex = 12;
             this.txtBox_Password.UseSystemPasswordChar = true;
             // 
             // btn_TestConect
@@ -125,7 +133,7 @@
             this.btn_TestConect.Location = new System.Drawing.Point(12, 9);
             this.btn_TestConect.Name = "btn_TestConect";
             this.btn_TestConect.Size = new System.Drawing.Size(164, 23);
-            this.btn_TestConect.TabIndex = 6;
+            this.btn_TestConect.TabIndex = 26;
             this.btn_TestConect.Text = "Проверка подключения";
             this.btn_TestConect.UseVisualStyleBackColor = true;
             this.btn_TestConect.Click += new System.EventHandler(this.btn_TestConect_Click);
@@ -139,10 +147,10 @@
             this.pnl_Ora.Controls.Add(this.txtBox_User);
             this.pnl_Ora.Controls.Add(this.txtBox_TNS);
             this.pnl_Ora.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl_Ora.Location = new System.Drawing.Point(0, 39);
+            this.pnl_Ora.Location = new System.Drawing.Point(0, 197);
             this.pnl_Ora.Name = "pnl_Ora";
             this.pnl_Ora.Size = new System.Drawing.Size(398, 117);
-            this.pnl_Ora.TabIndex = 8;
+            this.pnl_Ora.TabIndex = 9;
             this.pnl_Ora.Visible = false;
             // 
             // pnl_Top
@@ -187,10 +195,10 @@
             this.pnl_MSSQL.Controls.Add(this.txtBox_MSSQL_user);
             this.pnl_MSSQL.Controls.Add(this.txtBox_MSSQL_Server);
             this.pnl_MSSQL.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl_MSSQL.Location = new System.Drawing.Point(0, 156);
+            this.pnl_MSSQL.Location = new System.Drawing.Point(0, 39);
             this.pnl_MSSQL.Name = "pnl_MSSQL";
             this.pnl_MSSQL.Size = new System.Drawing.Size(398, 158);
-            this.pnl_MSSQL.TabIndex = 9;
+            this.pnl_MSSQL.TabIndex = 3;
             this.pnl_MSSQL.Visible = false;
             // 
             // lbl_MSSQL_DB
@@ -211,7 +219,7 @@
             this.cmbBox_MSSQL_DB.Location = new System.Drawing.Point(168, 127);
             this.cmbBox_MSSQL_DB.Name = "cmbBox_MSSQL_DB";
             this.cmbBox_MSSQL_DB.Size = new System.Drawing.Size(182, 21);
-            this.cmbBox_MSSQL_DB.TabIndex = 13;
+            this.cmbBox_MSSQL_DB.TabIndex = 8;
             this.cmbBox_MSSQL_DB.MouseEnter += new System.EventHandler(this.cmbBox_MSSQL_DB_MouseEnter);
             // 
             // chkBox_MSSQL_Integr
@@ -220,7 +228,7 @@
             this.chkBox_MSSQL_Integr.Location = new System.Drawing.Point(168, 42);
             this.chkBox_MSSQL_Integr.Name = "chkBox_MSSQL_Integr";
             this.chkBox_MSSQL_Integr.Size = new System.Drawing.Size(211, 17);
-            this.chkBox_MSSQL_Integr.TabIndex = 12;
+            this.chkBox_MSSQL_Integr.TabIndex = 5;
             this.chkBox_MSSQL_Integr.Text = "Встроенная проверка пользователя";
             this.chkBox_MSSQL_Integr.UseVisualStyleBackColor = true;
             this.chkBox_MSSQL_Integr.CheckedChanged += new System.EventHandler(this.chkBox_MSSQL_Integr_CheckedChanged);
@@ -254,7 +262,7 @@
             this.txtBox_MSSQL_password.Location = new System.Drawing.Point(168, 95);
             this.txtBox_MSSQL_password.Name = "txtBox_MSSQL_password";
             this.txtBox_MSSQL_password.Size = new System.Drawing.Size(182, 26);
-            this.txtBox_MSSQL_password.TabIndex = 11;
+            this.txtBox_MSSQL_password.TabIndex = 7;
             this.txtBox_MSSQL_password.UseSystemPasswordChar = true;
             this.txtBox_MSSQL_password.Visible = false;
             this.txtBox_MSSQL_password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_MSSQL_password_KeyDown);
@@ -277,7 +285,7 @@
             this.txtBox_MSSQL_user.Location = new System.Drawing.Point(168, 63);
             this.txtBox_MSSQL_user.Name = "txtBox_MSSQL_user";
             this.txtBox_MSSQL_user.Size = new System.Drawing.Size(182, 26);
-            this.txtBox_MSSQL_user.TabIndex = 10;
+            this.txtBox_MSSQL_user.TabIndex = 6;
             this.txtBox_MSSQL_user.Visible = false;
             this.txtBox_MSSQL_user.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_MSSQL_user_KeyDown);
             // 
@@ -287,17 +295,17 @@
             this.txtBox_MSSQL_Server.Location = new System.Drawing.Point(168, 10);
             this.txtBox_MSSQL_Server.Name = "txtBox_MSSQL_Server";
             this.txtBox_MSSQL_Server.Size = new System.Drawing.Size(182, 26);
-            this.txtBox_MSSQL_Server.TabIndex = 9;
+            this.txtBox_MSSQL_Server.TabIndex = 4;
             this.txtBox_MSSQL_Server.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_MSSQL_Server_KeyDown);
             // 
             // pnl_Bottom
             // 
             this.pnl_Bottom.Controls.Add(this.btn_TestConect);
             this.pnl_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Bottom.Location = new System.Drawing.Point(0, 434);
+            this.pnl_Bottom.Location = new System.Drawing.Point(0, 520);
             this.pnl_Bottom.Name = "pnl_Bottom";
             this.pnl_Bottom.Size = new System.Drawing.Size(398, 44);
-            this.pnl_Bottom.TabIndex = 10;
+            this.pnl_Bottom.TabIndex = 25;
             this.pnl_Bottom.Visible = false;
             // 
             // pnl_RPro8
@@ -306,11 +314,30 @@
             this.pnl_RPro8.Controls.Add(this.btn_Rpro8_SelectFolder);
             this.pnl_RPro8.Controls.Add(this.lbl_Rpro8_Patch);
             this.pnl_RPro8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl_RPro8.Location = new System.Drawing.Point(0, 314);
+            this.pnl_RPro8.Location = new System.Drawing.Point(0, 421);
             this.pnl_RPro8.Name = "pnl_RPro8";
             this.pnl_RPro8.Size = new System.Drawing.Size(398, 74);
-            this.pnl_RPro8.TabIndex = 11;
+            this.pnl_RPro8.TabIndex = 17;
             this.pnl_RPro8.Visible = false;
+            // 
+            // lbl_Rpro8_PatchDB
+            // 
+            this.lbl_Rpro8_PatchDB.AutoSize = true;
+            this.lbl_Rpro8_PatchDB.Location = new System.Drawing.Point(13, 42);
+            this.lbl_Rpro8_PatchDB.Name = "lbl_Rpro8_PatchDB";
+            this.lbl_Rpro8_PatchDB.Size = new System.Drawing.Size(0, 13);
+            this.lbl_Rpro8_PatchDB.TabIndex = 9;
+            // 
+            // btn_Rpro8_SelectFolder
+            // 
+            this.btn_Rpro8_SelectFolder.ForeColor = System.Drawing.Color.Navy;
+            this.btn_Rpro8_SelectFolder.Location = new System.Drawing.Point(275, 12);
+            this.btn_Rpro8_SelectFolder.Name = "btn_Rpro8_SelectFolder";
+            this.btn_Rpro8_SelectFolder.Size = new System.Drawing.Size(104, 23);
+            this.btn_Rpro8_SelectFolder.TabIndex = 18;
+            this.btn_Rpro8_SelectFolder.Text = "Выбрать папку";
+            this.btn_Rpro8_SelectFolder.UseVisualStyleBackColor = true;
+            this.btn_Rpro8_SelectFolder.Click += new System.EventHandler(this.btn_Rpro8_SelectFolder_Click);
             // 
             // lbl_Rpro8_Patch
             // 
@@ -323,34 +350,88 @@
             this.lbl_Rpro8_Patch.TabIndex = 7;
             this.lbl_Rpro8_Patch.Text = "Путь к папке RPro8";
             // 
-            // btn_Rpro8_SelectFolder
+            // pnl_ODBC
             // 
-            this.btn_Rpro8_SelectFolder.ForeColor = System.Drawing.Color.Navy;
-            this.btn_Rpro8_SelectFolder.Location = new System.Drawing.Point(275, 12);
-            this.btn_Rpro8_SelectFolder.Name = "btn_Rpro8_SelectFolder";
-            this.btn_Rpro8_SelectFolder.Size = new System.Drawing.Size(104, 23);
-            this.btn_Rpro8_SelectFolder.TabIndex = 8;
-            this.btn_Rpro8_SelectFolder.Text = "Выбрать папку";
-            this.btn_Rpro8_SelectFolder.UseVisualStyleBackColor = true;
-            this.btn_Rpro8_SelectFolder.Click += new System.EventHandler(this.btn_Rpro8_SelectFolder_Click);
+            this.pnl_ODBC.Controls.Add(this.label1);
+            this.pnl_ODBC.Controls.Add(this.label2);
+            this.pnl_ODBC.Controls.Add(this.txtBox_ODBC_Password);
+            this.pnl_ODBC.Controls.Add(this.label3);
+            this.pnl_ODBC.Controls.Add(this.txtBox_ODBC_User);
+            this.pnl_ODBC.Controls.Add(this.txtBox_ODBC);
+            this.pnl_ODBC.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnl_ODBC.Location = new System.Drawing.Point(0, 314);
+            this.pnl_ODBC.Name = "pnl_ODBC";
+            this.pnl_ODBC.Size = new System.Drawing.Size(398, 107);
+            this.pnl_ODBC.TabIndex = 13;
             // 
-            // lbl_Rpro8_PatchDB
+            // label1
             // 
-            this.lbl_Rpro8_PatchDB.AutoSize = true;
-            this.lbl_Rpro8_PatchDB.Location = new System.Drawing.Point(13, 42);
-            this.lbl_Rpro8_PatchDB.Name = "lbl_Rpro8_PatchDB";
-            this.lbl_Rpro8_PatchDB.Size = new System.Drawing.Size(0, 13);
-            this.lbl_Rpro8_PatchDB.TabIndex = 9;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(12, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(121, 20);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Пользователь";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.Navy;
+            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 20);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "DSN";
+            // 
+            // txtBox_ODBC_Password
+            // 
+            this.txtBox_ODBC_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtBox_ODBC_Password.Location = new System.Drawing.Point(168, 70);
+            this.txtBox_ODBC_Password.Name = "txtBox_ODBC_Password";
+            this.txtBox_ODBC_Password.Size = new System.Drawing.Size(182, 26);
+            this.txtBox_ODBC_Password.TabIndex = 16;
+            this.txtBox_ODBC_Password.UseSystemPasswordChar = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.Color.Navy;
+            this.label3.Location = new System.Drawing.Point(12, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 20);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Пароль";
+            // 
+            // txtBox_ODBC_User
+            // 
+            this.txtBox_ODBC_User.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtBox_ODBC_User.Location = new System.Drawing.Point(168, 38);
+            this.txtBox_ODBC_User.Name = "txtBox_ODBC_User";
+            this.txtBox_ODBC_User.Size = new System.Drawing.Size(182, 26);
+            this.txtBox_ODBC_User.TabIndex = 15;
+            // 
+            // txtBox_ODBC
+            // 
+            this.txtBox_ODBC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtBox_ODBC.Location = new System.Drawing.Point(168, 6);
+            this.txtBox_ODBC.Name = "txtBox_ODBC";
+            this.txtBox_ODBC.Size = new System.Drawing.Size(182, 26);
+            this.txtBox_ODBC.TabIndex = 14;
             // 
             // Form_Add_Source
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 478);
+            this.ClientSize = new System.Drawing.Size(398, 564);
             this.Controls.Add(this.pnl_RPro8);
+            this.Controls.Add(this.pnl_ODBC);
+            this.Controls.Add(this.pnl_Ora);
             this.Controls.Add(this.pnl_Bottom);
             this.Controls.Add(this.pnl_MSSQL);
-            this.Controls.Add(this.pnl_Ora);
             this.Controls.Add(this.pnl_Top);
             this.Name = "Form_Add_Source";
             this.Text = "Изменение подключения к базе данных";
@@ -365,6 +446,8 @@
             this.pnl_Bottom.ResumeLayout(false);
             this.pnl_RPro8.ResumeLayout(false);
             this.pnl_RPro8.PerformLayout();
+            this.pnl_ODBC.ResumeLayout(false);
+            this.pnl_ODBC.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -398,5 +481,12 @@
         private System.Windows.Forms.Label lbl_Rpro8_Patch;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.Label lbl_Rpro8_PatchDB;
+        private System.Windows.Forms.Panel pnl_ODBC;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtBox_ODBC_Password;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtBox_ODBC_User;
+        private System.Windows.Forms.TextBox txtBox_ODBC;
     }
 }

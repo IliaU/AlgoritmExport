@@ -34,6 +34,7 @@ namespace AlgoritmExport
         private void Form_Add_Source_Load(object sender, EventArgs e)
         {
             this.pnl_Ora.Visible = false;
+            this.pnl_ODBC.Visible = false;
             this.pnl_MSSQL.Visible = false;
             this.pnl_RPro8.Visible = false;
             this.pnl_Bottom.Visible = true;
@@ -51,6 +52,18 @@ namespace AlgoritmExport
                             this.txtBox_User.Text = ((Common.Com.Com_Provider_Ora)this.MyCom.Provider).ORA_User;
                             this.txtBox_Password.Text = ((Common.Com.Com_Provider_Ora)this.MyCom.Provider).ORA_Password;
                         }
+                    break;
+                case AlgoritmExport.Lib.Provider_En.ODBC:
+                    this.Provider = new Common.Com.Com_Provider_ODBC(this.MyCom);
+                    this.pnl_ODBC.Visible = true;
+                    this.pnl_ODBC.Dock = DockStyle.Fill;
+                    if (e != null)
+                    {
+                        this.cmbBox_lbl_Prov_Typ.SelectedIndex = (int)this.MyCom.Provider.GetTyp() - 1;
+                        this.txtBox_ODBC.Text = ((Common.Com.Com_Provider_ODBC)this.MyCom.Provider).ODBC_DSN;
+                        this.txtBox_ODBC_User.Text = ((Common.Com.Com_Provider_ODBC)this.MyCom.Provider).ODBC_User;
+                        this.txtBox_ODBC_Password.Text = ((Common.Com.Com_Provider_ODBC)this.MyCom.Provider).ODBC_Password;
+                    }
                     break;
                 case AlgoritmExport.Lib.Provider_En.MSSQL:
                         this.Provider = new Common.Com.Com_Provider_MSSQL(this.MyCom);

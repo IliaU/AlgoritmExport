@@ -22,3 +22,16 @@ D:\Users\IliaP_000\Documents\Visual Studio 2010\Projects\AlgoritmExport\Algoritm
 D:\Users\IliaP_000\Documents\Visual Studio 2010\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.Form_Start.resources
 D:\Users\IliaP_000\Documents\Visual Studio 2010\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.Properties.Resources.resources
 D:\Users\IliaP_000\Documents\Visual Studio 2010\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.csproj.GenerateResource.Cache
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\bin\Debug\AlgoritmExport.exe.config
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.exe
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.pdb
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.Form_Add_Source.resources
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.Form_Info.resources
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.Form_Lic.resources
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.Form_Param.resources
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.Form_Start.resources
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.Properties.Resources.resources
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\obj\x86\Debug\AlgoritmExport.csproj.GenerateResource.Cache
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\bin\Debug\AlgoritmExport.exe
+C:\Users\User\Documents\Visual Studio 2015\Projects\AlgoritmExport\AlgoritmExport\bin\Debug\AlgoritmExport.pdb

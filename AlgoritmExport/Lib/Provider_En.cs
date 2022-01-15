@@ -7,6 +7,6 @@ namespace AlgoritmExport.Lib
 {
     public enum Provider_En
     {
-        Empty, Oracle, MSSQL, RPro8
+        Empty, Oracle, MSSQL, RPro8, ODBC
     }
 }
