@@ -158,6 +158,9 @@ namespace AlgoritmExport
                     case AlgoritmExport.Lib.Provider_En.Oracle:
                         ((Common.Com.Com_Provider_Ora)this.Provider).TestCon(this.txtBox_TNS.Text, this.txtBox_User.Text, this.txtBox_Password.Text);
                         break;
+                    case AlgoritmExport.Lib.Provider_En.ODBC:
+                        ((Common.Com.Com_Provider_ODBC)this.Provider).TestCon(this.txtBox_ODBC.Text, this.txtBox_ODBC_User.Text, this.txtBox_ODBC_Password.Text);
+                        break;
                     case AlgoritmExport.Lib.Provider_En.MSSQL:
                         ((Common.Com.Com_Provider_MSSQL)this.Provider).TestCon(this.txtBox_MSSQL_Server.Text, this.chkBox_MSSQL_Integr.Checked, this.txtBox_MSSQL_user.Text, this.txtBox_MSSQL_password.Text);
                         break;
@@ -185,6 +188,9 @@ namespace AlgoritmExport
                 {
                     case AlgoritmExport.Lib.Provider_En.Oracle:
                         ((Common.Com.Com_Provider_Ora)this.Provider).SaveConnectStr(this.txtBox_TNS.Text, this.txtBox_User.Text, this.txtBox_Password.Text);
+                        break;
+                    case AlgoritmExport.Lib.Provider_En.ODBC:
+                        ((Common.Com.Com_Provider_ODBC)this.Provider).SaveConnectStr(this.txtBox_ODBC.Text, this.txtBox_ODBC_User.Text, this.txtBox_ODBC_Password.Text);
                         break;
                     case AlgoritmExport.Lib.Provider_En.MSSQL:
                         ((Common.Com.Com_Provider_MSSQL)this.Provider).SaveConnectStr(this.txtBox_MSSQL_Server.Text, this.chkBox_MSSQL_Integr.Checked, this.txtBox_MSSQL_user.Text, this.txtBox_MSSQL_password.Text, (this.cmbBox_MSSQL_DB.SelectedIndex>-1?this.cmbBox_MSSQL_DB.Items[this.cmbBox_MSSQL_DB.SelectedIndex].ToString():null));

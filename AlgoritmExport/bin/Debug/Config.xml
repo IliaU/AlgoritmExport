@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Algoritm_Export Version="3" DefColSpan="\t" DefRowSpan="\r\n" ProviderTyp="MSSQL" ConnectionString="Data Source=localhost;Initial Catalog=DNS;Integrated Security=True">
+<Algoritm_Export Version="3" DefColSpan="\t" DefRowSpan="\r\n" ProviderTyp="ODBC" ConnectionString="Dsn=AKS;Uid=AKS1;Pwd=123">
   <Lic>
     <Key MachineName="A104974" UserName="U_M0BVP" ValidToYYYYMMDD="20170101" LicKey="72J-748-73Z-742-743-741-74D-75P-75H-75V-75Q-75M-75U-75T-74H-761-75Q-75V-75Q-75X-73V-746-73W-742-745-744-73X-741-73Z-741-74X-75C-74R-744-74E-753-74U" ActivNumber="142-15J-15L-15J-15L" Info="Для альфа привязанный к OS" HashUserOS="True" />
     <Key MachineName="A104974" UserName="U_M0BVP" ValidToYYYYMMDD="20180101" LicKey="7K2-7LR-7LO-7LO-7LN-7LK-7M2-7NB-7N1-7NE-7NF-7N8-7NE-7NC-7M6-7NN-7NA-7NE-7NF-7NJ-7LF-7LP-7LL-7LO-7LQ-7LN-7LM-7LN-7LJ-7LK-7M6-7NL-7MZ-7NH-7NM-7NE-7N8-7N4" ActivNumber="3XC-3YX-3YR-3YX-3Z1" Info="Для Альфа без привязки к пользователю" HashUserOS="False" />
     <Key MachineName="A120288" UserName="U_M0BVP" ValidToYYYYMMDD="20181231" LicKey="1QC-1RU-1RY-1RU-1RW-1RN-1S7-1TG-1TB-1TH-1TK-1TD-1TO-1TF-1SB-1TS-1TK-1TH-1TK-1TO-1RP-1RS-1RQ-1RT-1S0-1RR-1RS-1RV-1RT-1RN-1SB-1TQ-1T9-1TK-1TR-1TJ-1TI-1T7" HashUserOS="False" />
     <Key MachineName="A120288" UserName="U_M0BVP" ValidToYYYYMMDD="20191231" LicKey="74F-764-761-75W-75W-75X-76A-77I-77B-77R-77N-77F-77O-77P-76E-77U-77K-77R-77N-77Q-75P-762-75T-75V-761-761-75V-75X-75T-75X-76E-77S-779-77U-77U-77L-77I-77H" ActivNumber="19Z-1BG-1BP-1BI-1BK" Info="" HashUserOS="False" />
+    <Key MachineName="CHUDAKOV" UserName="User" ValidToYYYYMMDD="20221231" LicKey="4J7-4KS-4L0-4KZ-4KS-4KL-4L8-4ME-4M7-4MF-4ML-4MB-4MK-4MD-4LC-4MQ-4MG-4MF-4ML-4MM-4KL-4KQ-4KR-4KS-4KQ-4KP-4KT-4KT-4KP-4KL-4LC-4MO-4M5-4MI-4MS-4MH-4ME-4M5" ActivNumber="3TF-3UZ-3V9-3V4-3V2" Info="" HashUserOS="False" />
   </Lic>
   <Params>
     <Param Name="From" Caption="C" Typ="Calendar" Format="DD.MM.YYYY" Default="Select Sysdate As ID from dual" />
@@ -15,26 +16,91 @@ union Select '01.02.2019' AS ID, 'Февраль' AS TXT from dual
 union Select '01.03.2019' AS ID, 'Март' AS TXT from dual</Param>
   </Params>
   <Workflows>
-    <Workflow LongName="Тестовая выгрузка с применением фильтра" ShortName="tst" HachColName="True" CHCP="866">Select 'with T As (Select 1 ID, To_Date(''01.01.2019'',''DD.MM.YYYY'') D, 4 As MODEL_ID, ''Иж Ода'' As MODEL_TXT From dual union Select 2, To_Date(''01.02.2019'',''DD.MM.YYYY''), 2,  ''Ford Fusion'' From dual union Select 3, To_Date(''01.03.2019'',''DD.MM.YYYY''), 1, ''Ford Galaxy'' From dual union Select 4, To_Date(''01.03.2019'',''DD.MM.YYYY''), 3, ''Dewo Matiz'' From dual)
-Select *
-From T
-Where D between To_Date(''@From'',''DD.MM.YYYY'') and To_Date(''@To'',''DD.MM.YYYY'')
-    and MODEL_ID=Case When @Product=''-1'' Then MODEL_ID Else @Product end' As QUERY, '@CurrentFolder\Export\My_Prod_chcp866.txt' As FILE_PATH, '\t' As COL_SPAN, '\r\n' As ROW_SPAN
-From dual</Workflow>
-    <Workflow LongName="Выгружаем всё" ShortName="tst2" FILE_PATH_FOR_EXEL="@CurrentFolder\Export\ttt.xlsx" HachColName="True">Select 'Select 1 ID, ''Ford Galaxy'' As MODEL From dual union Select 2, ''Ford Fusion'' From dual union Select 3, ''Dewo Matiz'' From dual union Select 4, ''Иж Ода'' From dual' As QUERY, 'Product' As LIST_NAME,  '@CurrentFolder\Export\Product.txt' As FILE_PATH, 'True' As "APPEND" From Dual
-union 
-Select 'Select 1 ID, To_Date(''01.01.2019'',''DD.MM.YYYY'') D, 4 As MODEL From dual union Select 2, To_Date(''01.02.2019'',''DD.MM.YYYY''), 2 From dual union Select 3, To_Date(''01.03.2019'',''DD.MM.YYYY''), 1 From dual union Select 4, To_Date(''01.03.2019'',''DD.MM.YYYY''), 3 From dual', 'Journal' As LIST_NAME,  '@CurrentFolder\Export\Journal.txt', 'False' As "APPEND" From Dual</Workflow>
-    <Workflow LongName="Выгружаем всё в специальном формате" ShortName="tst3" EmailQuery="Select 'ALFAMOS3.MOSCOW.ALFAINTRA.NET' As SmtpServer, 0 As SmtpPort, null As SmtpUser, null As SmtpPassword, 'IPogodin@Alfabank.ru' As &quot;To&quot;, 'monitoring@Alfabank.ru' As &quot;From&quot;, 'Тема' As Subject, 'Сообщение' As Body, null As CHCP, 0 As SSL" HachColName="True">Select 'Select 1 ID, ''Ford Galaxy'' As MODEL union Select 2, ''Ford Fusion'' union Select 3, ''Dewo Matiz'' union Select 4, ''Иж Ода'' union Select 5, null ' As QUERY, 'Product' As LIST_NAME,  '@CurrentFolder\Export\Product.txt' As FILE_PATH, 'XML;&lt;?xml version="1.0" encoding="windows-1251"?&gt;;Товары;Элемент' As SpecificFormat
-union 
-Select 'Select 1 ID, convert(date,''01.01.'' + Convert(varchar,DATEPART(Year,GetDate())), 104) D, 4 As MODEL union Select 2,convert(date,''01.02.'' + Convert(varchar,DATEPART(Year,GetDate())), 104), 2 union Select 3, convert(date,''01.03.'' + Convert(varchar,DATEPART(Year,GetDate())), 104), 1 union Select 4, convert(date,''01.04.'' + Convert(varchar,DATEPART(Year,GetDate())), 104), 3 ', 'Journal' As LIST_NAME,  '@CurrentFolder\Export\Journal.txt', null</Workflow>
-    <Workflow LongName="Выгружаем всё в специальном формате2" ShortName="tst4" HachColName="True" CHCP="UTF-8">With T As (Select  '@CurrentFolder\Export\Specific2.xml' As FILE_PATH, 'XML2;&lt;?xml version="1.0" encoding="UTF-8"?&gt;;&lt;Data&gt;
-    &lt;EcrConfigStoreHdr_T FileVerFormat="256" FileDataType="8" CodePageStr="Windows-1251"/&gt;
-    &lt;box Name="PriceCodes"&gt;;PrItemPriceCode_T;    &lt;/box&gt;
-&lt;/Data&gt;' As SpecificFormat From Dual)
-Select 'Select 1 ID, ''Ford Galaxy'' As MODEL From dual union Select 2, ''Ford Fusion'' From dual union Select 3, ''Dewo Matiz'' From dual union Select 4, ''Иж Ода'' From dual' As QUERY, 'Product' As LIST_NAME,  T.FILE_PATH, T.SpecificFormat, 'Nam1,Nam2' As SpecialColumnName From Dual, T</Workflow>
-    <Workflow LongName="Выгружаем из RPro8 всех клиентов" ShortName="tst5" HachColName="True" CHCP="UTF-8">QUERY|Client.Dat!FILE_PATH|@CurrentFolder\Export\Client.txt!COL_SPAN|\t!ROW_SPAN|\r\n!LIST_NAME|Client^QUERY|INVN.DAT!FILE_PATH|@CurrentFolder\Export\Client2.txt!COL_SPAN|\t!ROW_SPAN|\r\n!LIST_NAME|Client2</Workflow>
-    <Workflow LongName="Выгружаем всё и отправляем на мыло" ShortName="tst2" FILE_PATH_FOR_EXEL="@CurrentFolder\Export\ttt.xlsx" EmailQuery="Select 'ALFAMOS3.MOSCOW.ALFAINTRA.NET' As SmtpServer, 0 As SmtpPort, null As SmtpUser, null As SmtpPassword, 'IPogodin@Alfabank.ru' As &quot;To&quot;, 'monitoring@Alfabank.ru' As &quot;From&quot;, 'Тема' As Subject, 'Сообщение' As Body, null As CHCP, 0 As SSL From Dual" HachColName="True">Select 'Select 1 ID, ''Ford Galaxy'' As MODEL From dual union Select 2, ''Ford Fusion'' From dual union Select 3, ''Dewo Matiz'' From dual union Select 4, ''Иж Ода'' From dual' As QUERY, 'Product' As LIST_NAME,  '@CurrentFolder\Export\Product.txt' As FILE_PATH, 'True' As "APPEND" From Dual
-union 
-Select 'Select 1 ID, To_Date(''01.01.2019'',''DD.MM.YYYY'') D, 4 As MODEL From dual union Select 2, To_Date(''01.02.2019'',''DD.MM.YYYY''), 2 From dual union Select 3, To_Date(''01.03.2019'',''DD.MM.YYYY''), 1 From dual union Select 4, To_Date(''01.03.2019'',''DD.MM.YYYY''), 3 From dual', 'Journal' As LIST_NAME,  '@CurrentFolder\Export\Journal.txt', 'False' As "APPEND" From Dual</Workflow>
+    <Workflow LongName="Продажи" ShortName="invoices" HachColName="True">Select 'Select D.sbs_no as fldSBS, D.sid As fldDocSID, D.doc_no As fldDocNumber, D.post_date as fldDocDate,
+   D.bt_cuid as fldCustomerSID, 
+   case when LPAD(D.store_no,3,''0'')=''001'' then ''003'' end as fldStore,
+   case when D.has_sale=1 then 1 else 0 end as fldDocType,
+   #case when coalesce(i.PROC_STATUS,0)=0 then 0 when i.PROC_STATUS=131072 then 3 when i.PROC_STATUS=65536 then 2 else -1 end  as fldDocStatus,
+   coalesce((Select round(sum(amount),2) As fldTotalCash 
+        From rpsods.tender TCash 
+        Where D.sid=TCash.doc_sid 
+          and TCash.tender_type=0),0) as fldTotalCash,
+   coalesce((Select round(sum(amount),2) As fldTotalCard 
+        From rpsods.tender TCash 
+        Where D.sid=TCash.doc_sid 
+          and TCash.tender_type=2),0) as fldTotalCard,
+   coalesce((Select round(sum(amount),2) As fldTotalOther 
+        From rpsods.tender TCash 
+        Where D.sid=TCash.doc_sid 
+          and TCash.tender_type not in (0,2,5)),0) as fldTotalOther,
+   coalesce((Select round(sum(amount),2) As fldBonus
+        From rpsods.tender TCash 
+        Where D.sid=TCash.doc_sid 
+          and TCash.tender_type =5),0) as fldBonus,
+   I.item_pos As fldSeqNum,
+  (Select GROUP_CONCAT(card_type_name) 
+    From (Select ''Наличные'' As card_type_name 
+        From rpsods.tender TCash 
+        Where D.sid=TCash.doc_sid 
+          and TCash.tender_type=0
+        union
+        Select ''Бонусы'' As card_type_name
+        From rpsods.tender TCash 
+        Where D.sid=TCash.doc_sid 
+          and TCash.tender_type=5
+        union
+        Select distinct TCred.card_type_name 
+        From rpsods.tender T
+          left join rpsods.tender_credit_card TCred On T.sid = TCred.tender_sid
+        Where D.sid=T.doc_sid 
+          and T.tender_type=2
+        ) A223) As fldCard_type,
+  I.sid as fldItemSID, I.scan_upc as fldUPC, Round(I.qty,0) as fldDocItmQty,
+  Round(I.price,2) as fldDocItmPrice,
+  Round(I.tax_perc,0) as fldVATprc,
+  Round(I.cost,2) as fldDocItmCost,
+  D.cashier_full_name as fldCashier,
+  D.bt_last_name as fldClient,
+  D.bt_first_name as fldClient_name,
+  D.bt_primary_phone_no as fldphone,
+  D.reason_code as fldReason, #D.reason_description
+  I.so_number as fldPO_NUM,
+  '''' as fldDelvry
+From rpsods.document D
+  inner join rpsods.document_item I On D.sid= I.doc_sid
+Where D.post_date &gt;= Date_Add(sysdate(), interval -7 day)
+  and D.doc_no &gt; 0
+  and (D.has_sale=1 or D.has_return=1)' As QUERY, 'D:\\Vremena\\invoices.dat' As FILE_PATH, 'True' As "APPEND", '\\t' As COL_SPAN, '\\r\\n' As ROW_SPAN 
+    </Workflow>
+    <Workflow LongName="Клиенты" ShortName="clients" HachColName="True">
+select 'select case when s.store_no=1 then ''5010'' end as fldSBS,
+  c0.sid as fldclientSID,
+  c0.cust_id as fld_cust_id,
+  case when c0.last_name is null then null else c0.last_name end as fldClient,
+  case when c0.first_name is null then null else c0.first_name end as fldClient_name,
+  c3.phone_no as fldphone
+from customer c0
+  inner join store s On c0.store_sid = s.sid
+  inner join customer_address ca on c0.SID = ca.CUST_SID
+  inner join customer_phone c3 on c3.cust_sid = ca.cust_sid
+where c3.phone_no like ''%+7%'' and c0.post_DATE &gt;= DATE_FORMAT(Date_Add(sysdate(), interval -7 day), ''%Y-%m-01'')
+order by fldSBS, fldclientSID, fld_cust_id, fldClient, fldClient_name, fldphone' As QUERY, 'D:\\Vremena\\clients.dat' As FILE_PATH, 'True' As "APPEND",'\\t' As COL_SPAN, '\\r\\n' As ROW_SPAN
+    </Workflow>
+    <Workflow LongName="Поставщики" ShortName="vendors" HachColName="True"> 
+select 'select  
+		v.vend_code as "fldVendorCode", 
+		v.vend_name as "fldCompany", 
+		va.postal_code as "fldZip", 
+		va.address_1 as "fldAddr1", 
+		va.address_2 as "fldAddr2", 
+		va.address_3 as "fldAddr3", 
+		vc.phone1_no as "fldPhone1", 
+		vc.phone2_no as "fldPhone2", 
+		vc.first_name as "fldFName", 
+		vc.last_name as "fldLName"  
+		from VENDOR v
+    inner join vendor_contact_address va on v.sid=va.vend_sid
+    left join vendor_contact vc on v.sid = vc.sid' As QUERY, 'D:\\Vremena\\vendors.dat'As FILE_PATH, 'True' As "APPEND", '\\t' As COL_SPAN, '\\r\\n' As ROW_SPAN
+    </Workflow>
   </Workflows>
 </Algoritm_Export>

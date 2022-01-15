@@ -302,7 +302,7 @@
             // 
             this.pnl_Bottom.Controls.Add(this.btn_TestConect);
             this.pnl_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Bottom.Location = new System.Drawing.Point(0, 520);
+            this.pnl_Bottom.Location = new System.Drawing.Point(0, 579);
             this.pnl_Bottom.Name = "pnl_Bottom";
             this.pnl_Bottom.Size = new System.Drawing.Size(398, 44);
             this.pnl_Bottom.TabIndex = 25;
@@ -426,7 +426,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 564);
+            this.ClientSize = new System.Drawing.Size(398, 623);
             this.Controls.Add(this.pnl_RPro8);
             this.Controls.Add(this.pnl_ODBC);
             this.Controls.Add(this.pnl_Ora);

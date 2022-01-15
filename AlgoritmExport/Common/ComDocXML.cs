@@ -338,6 +338,19 @@ Select 'Select 1 ID, To_Date(''01.01." + TekYear + @"'',''DD.MM.YYYY'') D, 4 As 
                                 catch (Exception) { }
                             }
                          break;
+                        case AlgoritmExport.Lib.Provider_En.ODBC:
+                            // Устанавливаем строку подключения в объекте провайдера
+                            if (ConnectionString != null && ConnectionString.Trim() != string.Empty)
+                            {
+                                try
+                                {
+                                    Com_Provider_ODBC conOdbc = new Com_Provider_ODBC(this._MyCom);
+                                    conOdbc.SaveConnectStr(ConnectionString);
+                                    this._MyCom.Provider = conOdbc;
+                                }
+                                catch (Exception) { }
+                            }
+                            break;
                         case AlgoritmExport.Lib.Provider_En.MSSQL:
                             // Устанавливаем строку подключения в объекте провайдера
                             if (ConnectionString != null && ConnectionString.Trim() != string.Empty)

@@ -22,7 +22,7 @@ namespace AlgoritmExport.Common
             /// <returns>Кастомизированный тип провайдера</returns>
             public Provider_En GetTyp()
             {
-                return Provider_En.MSSQL;
+                return Provider_En.ODBC;
             }
 
             /// <summary>
@@ -104,19 +104,39 @@ namespace AlgoritmExport.Common
             {
                 OdbcConnectionStringBuilder sBildOdbc = new OdbcConnectionStringBuilder(ConnectStr);
 
-                if (!string.IsNullOrWhiteSpace(sBildOdbc.Dsn)) throw new ApplicationException("Не указан DSN");
+                if (string.IsNullOrWhiteSpace(sBildOdbc.Dsn)) throw new ApplicationException("Не указан DSN");
                 object rez;
-                if (!string.IsNullOrWhiteSpace((new OdbcConnectionStringBuilder(this._ConnectString)).TryGetValue("Uid", out rez).ToString()))  throw new ApplicationException("Не указан логин");
-                if (!string.IsNullOrWhiteSpace((new OdbcConnectionStringBuilder(this._ConnectString)).TryGetValue("Pwd", out rez).ToString()))  throw new ApplicationException("Не указан пароль");
+                if (string.IsNullOrWhiteSpace((new OdbcConnectionStringBuilder(this._ConnectString)).TryGetValue("Uid", out rez).ToString()))  throw new ApplicationException("Не указан логин");
+                if (string.IsNullOrWhiteSpace((new OdbcConnectionStringBuilder(this._ConnectString)).TryGetValue("Pwd", out rez).ToString()))  throw new ApplicationException("Не указан пароль");
 
                 try
                 {
+                    bool FlagSuccess = false;
                     using (OdbcConnection conOdbc = new OdbcConnection(ConnectStr))
                     {
-                        string ver = conOdbc.ServerVersion;
+                        conOdbc.Open();
+                        try
+                        {
+                            string ver = conOdbc.ServerVersion;
+                            if (!string.IsNullOrWhiteSpace(ver)) FlagSuccess = true;
+                        }
+                        catch (Exception)
+                        {
+                            using (OdbcCommand com = new OdbcCommand("Select 1 As A"))
+                            {
+                                using (OdbcDataReader read = com.ExecuteReader())
+                                {
+                                    if (read.HasRows)
+                                    {
+                                        FlagSuccess = true;
+                                    }
+                                }
+                            }
+                        }
 
-                        if (!string.IsNullOrWhiteSpace(ver)) return ConnectStr;
+                        conOdbc.Close();
                     }
+                    if (FlagSuccess) return ConnectStr;
                 }
                 catch (Exception ex) { throw new ApplicationException(ex.Message); }
 
