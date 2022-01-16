@@ -102,5 +102,121 @@ select 'select
     inner join vendor_contact_address va on v.sid=va.vend_sid
     left join vendor_contact vc on v.sid = vc.sid' As QUERY, 'D:\\Vremena\\vendors.dat'As FILE_PATH, 'True' As "APPEND", '\\t' As COL_SPAN, '\\r\\n' As ROW_SPAN
     </Workflow>
+	<Workflow LongName="Товары" ShortName="Items" HachColName="True">
+select 'With T As (Select case when i.sbs_sid =5025 then 5010 else i.sbs_sid end as fldSBS,
+      i.sid As fldItemSID,
+      d.dcs_code as fldDCScode,
+      d.c_long_name as fldCname,
+      d.s_long_name as fldSname,
+      i.DESCRIPTION1 as fldDesc1,
+      i.DESCRIPTION2 as fldDesc2,
+      i.DESCRIPTION3 as fldDesc3,
+      i.text5 as fldDesc4,
+      i.attribute as fldAttr,
+      i.text4 as Contry,
+      i.text3 as fld1SshortName,
+      i.TEXT5 as fld1LlongName,
+    	i.text6 as fldcomposition,
+      v.vend_code as fldVendorCode,
+    	i.cost as fldcost,
+      i.upc as fldUPC,
+      i.ALU as fldALU,
+    	i.item_size as fldSize,
+    	i.attribute as fldColor,
+      Round(tr.tax_perc1,0) As fldVATprc,
+      e.udf9_string udf38
+    From rpsods.invn_sbs_item i
+      inner join rpsods.dcs d On i.dcs_sid=d.sid
+      left join rpsods.vendor v On i.vend_sid=v.sid
+      left join rpsods.tax_code tc On i.tax_code_sid=tc.sid
+      left join rpsods.tax t on tc.sid=t.tax_code_sid
+      left join rpsods.tax_code_rule tr on t.tax_code_rule_sid=tr.sid
+      left join rpsods.invn_sbs_extend e on i.sid=e.invn_sbs_item_sid
+	Where i.post_date &gt;= DATE_FORMAT(Date_Add(sysdate(), interval -20 day), ''%Y-%m-01'') )
+Select distinct fldSBS, fldItemSID, fld1SshortName, udf38 as fldSeason, fldDesc1 as fld1Sarticul,
+  fldsize, fldcolor, fldcomposition, fld1LlongName||''''/''''||fldDesc2 as fld1SlongName,
+  ''шт'' as fldMeasure, fldVATprc, '''' as fldGTD, Contry as fldCountry, fldcost, fldUPC
+From T' As QUERY, 'D:\\Vremena\\items.dat' As FILE_PATH, 'True' As "APPEND",'\\t' As COL_SPAN, '\\r\\n' As ROW_SPAN
+from dual
+    </Workflow>
+	<Workflow LongName="Накладные" ShortName="vouchers" HachColName="True">
+select 'With  T As (Select case when v.sbs_sid =5025 then 5010 end  as fldSBS,
+      v.sid as fldDocSID,
+      v.vou_no as fldDocNumber,
+      v.modified_datetime as fldDocDate,
+      ve.vend_code as fldVendorCode,
+      ve.info2 as fldINN,
+      LPAD(s.store_no,3,''0'') as fldStore,
+      v.vou_type as fldDocType,
+      ifnull(v.proc_status,0) as fldDocStatus, 
+      i.item_pos as fldSeqNum,
+      i.sid as fldItemSID,
+      round(i.qty,0) as fldDocItmQty,
+      round(i.cost,0) as fldDocItmCost,
+      Round(tr.tax_perc1,0) as fldVATprc,
+      v.vou_reason_sid as fldReason
+    From rpsods.voucher v
+      inner join rpsods.vendor ve on v.vend_sid = ve.sid
+      inner join rpsods.store s on v.store_sid=s.sid
+      inner join rpsods.vou_item i on v.sid=i.vou_sid
+      left join rpsods.tax_code tc On i.tax_code_sid=tc.sid
+      left join rpsods.tax t on tc.sid=t.tax_code_sid
+      left join rpsods.tax_code_rule tr on t.tax_code_rule_sid=tr.sid
+    #Where v.sid=1637742503548
+	)
+Select fldSBS, fldDocSID, fldDocNumber, fldDocDate, fldVendorCode, fldINN,
+  case when fldStore=''001'' then ''003'' else fldStore end as fldStore,
+  fldDocType, case when coalesce(fldDocStatus,0)=0 then 0 else fldDocStatus/16+1 end  as fldDocStatus,
+  fldSeqNum, fldItemSID, fldDocItmQty, fldDocItmCost, fldVATprc, fldReason
+From T' As QUERY, 'D:\\Vremena\\vouchers.dat'As FILE_PATH, 'True' As "APPEND",'\\t' As COL_SPAN, '\\r\\n' As ROW_SPAN
+    </Workflow>
+	<Workflow LongName="Перемещения_между_магазинами" ShortName="slip1" HachColName="True"> Select '
+Select case when v.sbs_sid=5025 then 5010 end  as fldSBS,
+    i.sid as fldDocSID, 
+    v.vou_no as fldDocNumber,
+    v.post_date as fldDocDate,
+    case when v.sbs_sid= 5025 then ''003'' else v.sbs_sid end as fldStoreFrom, 
+    case when ve.vend_code=''15772'' then ''003'' 
+      when ve.vend_code=''18741'' then ''002'' 
+      when ve.VEND_CODE=''518742'' then ''006'' 
+      when ve.vend_code=''515774'' then ''005'' 
+      when ve.vend_code=''15776'' then ''004'' 
+      when ve.VEND_CODE=''15773'' then ''001'' 
+        else null end  as fldStoreTo,
+    v.vou_type as fldDocType,
+    v.vou_class as fldDocStatus,
+    i.item_pos as fldSeqNum,
+    i.sid as fldItemSID,
+    round(i.qty,0) as fldDocItmQty,
+    round(i.cost,2) as fldDocItmCost,
+    round(i.price,2) as fldDocItmPrice,
+    Round(tr.tax_perc1,0) as fldVATprc
+From rpsods.voucher v
+  inner join rpsods.vendor ve on v.vend_sid = ve.sid
+  inner join rpsods.vou_item i on v.sid=i.vou_sid
+  left join rpsods.tax_code tc On i.tax_code_sid=tc.sid
+  left join rpsods.tax t on tc.sid=t.tax_code_sid
+  left join rpsods.tax_code_rule tr on t.tax_code_rule_sid=tr.sid
+Where v.vou_type=1 
+  and v.vou_no &gt;0 
+  and ve.vend_code in (''15772'',''15773'',''18741'',''15776'',''515774'',''515774'',''518742'') 
+  and v.post_DATE &gt;= DATE_FORMAT(Date_Add(sysdate(), interval -7 day), ''%Y-%m-01'')
+  and v.proc_status is null 
+order by v.POST_DATE
+' As QUERY, 'D:\\Vremena\\slip1.dat'As FILE_PATH, 'True' As "APPEND", '\\t' As COL_SPAN, '\\r\\n' As ROW_SPAN 
+   </Workflow>
+   <Workflow LongName="Установка цен" ShortName="invoices_calc" HachColName="True">Select '
+Select case when i.sbs_sid = 5025 then 5010 else i.sbs_sid end  as fldsbs, 
+  i.sid as fldItemSID, 
+  i.upc as fldUPC,
+  round(Sum(Case When l.price_lvl=1 Then PRICE Else 0 End),2) As fldLvl1, 
+  round(Sum(Case When l.price_lvl=2 Then PRICE Else 0 End),2) As fldLvl2
+From rpsods.invn_sbs_item i
+  inner join rpsods.invn_sbs_price p on i.sid=p.invn_sbs_item_sid
+  inner join rpsods.price_level l on p.price_lvl_sid=l.sid
+where i.modified_datetime &gt;= DATE_FORMAT(Date_Add(sysdate(), interval -7 day), ''%Y-%m-01'')
+Group By  i.sbs_sid, i.sid, i.upc
+' As QUERY, 'D:\\Vremena\\price.dat' As FILE_PATH, 'True' As "APPEND", '\\t' As COL_SPAN, '\\r\\n' As ROW_SPAN
+    </Workflow>
   </Workflows>
 </Algoritm_Export>
