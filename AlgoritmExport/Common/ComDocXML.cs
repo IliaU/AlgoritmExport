@@ -271,7 +271,7 @@ Select 'Select 1 ID, ''Ford Galaxy'' As MODEL From dual union Select 2, ''Ford F
                     xmlWorkflow6.SetAttribute("LongName", "Выгружаем всё и отправляем на мыло");
                     xmlWorkflow6.SetAttribute("ShortName", "tst2");
                     xmlWorkflow6.SetAttribute("FILE_PATH_FOR_EXEL", @"@CurrentFolder\Export\ttt.xlsx");      // Пока не заказывали, но уже сделано
-                    xmlWorkflow6.SetAttribute("EmailQuery", @"Select 'ALFAMOS3.MOSCOW.ALFAINTRA.NET' As SmtpServer, 0 As SmtpPort, null As SmtpUser, null As SmtpPassword, 'IPogodin@Alfabank.ru' As ""To"", 'monitoring@Alfabank.ru' As ""From"", 'Тема' As Subject, 'Сообщение' As Body, null As CHCP, 0 As SSL From Dual");      // Запрос для отправки на мыло
+                    xmlWorkflow6.SetAttribute("EmailQuery", @"Select 'smtp.server.ru' As SmtpServer, 0 As SmtpPort, null As SmtpUser, null As SmtpPassword, 'ilia82@mail.ru' As ""To"", 'ilia82@mail.ru' As ""From"", 'Тема' As Subject, 'Сообщение' As Body, null As CHCP, 0 As SSL From Dual");      // Запрос для отправки на мыло
                     xmlWorkflow6.SetAttribute("HachColName", true.ToString());
                     xmlWorkflow6.InnerText = @"Select 'Select 1 ID, ''Ford Galaxy'' As MODEL From dual union Select 2, ''Ford Fusion'' From dual union Select 3, ''Dewo Matiz'' From dual union Select 4, ''Иж Ода'' From dual' As QUERY, 'Product' As LIST_NAME,  '@CurrentFolder\Export\Product.txt' As FILE_PATH, 'True' As ""APPEND"" From Dual
 union 

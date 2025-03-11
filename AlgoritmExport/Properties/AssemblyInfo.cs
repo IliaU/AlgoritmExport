@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("AlgoritmExport")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Alfa-Bank")]
+[assembly: AssemblyCompany("Ilya")]
 [assembly: AssemblyProduct("AlgoritmExport")]
-[assembly: AssemblyCopyright("Copyright © Alfa-Bank 2014")]
+[assembly: AssemblyCopyright("Copyright © ilya 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
